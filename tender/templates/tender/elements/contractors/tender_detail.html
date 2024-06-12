@@ -1,0 +1,63 @@
+{% extends 'tender/index.html' %}
+
+{% block head %} <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> {% endblock %}
+
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">{{ tender.title }}</h1>
+    <p><strong>Description:</strong> {{ tender.description }}</p>
+    <p><strong>Customer:</strong> {{ tender.customer.username }}</p>
+    <p><strong>Contractor:</strong> 
+        {% if tender.contractor %}
+            {{ tender.contractor.username }}
+        {% else %}
+            Not assigned
+        {% endif %}
+    </p>
+    <p><strong>Price:</strong> 
+        {% if tender.price %}
+            {{ tender.price }}
+        {% else %}
+            N/A
+        {% endif %}
+    </p>
+    <p><strong>Status:</strong> 
+        {% if tender.is_active %}
+            Active
+        {% else %}
+            Inactive
+        {% endif %}
+    </p>
+    <p><small class="text-muted">Created on: {{ tender.create_date }}</small></p>
+    <p><small class="text-muted">Last updated: {{ tender.update_date }}</small></p>
+
+    <h2 class="mt-5">Offers</h2>
+    {% for offer in offers %}
+        <div class="card mb-4">
+            <div class="card-body">
+                <p><strong>Contractor:</strong> {{ offer.user.username }}</p>
+                <p><strong>Price:</strong> {{ offer.price }}</p>
+                <p><strong>Description:</strong> {{ offer.description }}</p>
+                <p><small class="text-muted">Created on: {{ offer.create_date }}</small></p>
+                {% if not offer.is_accepted and request.user == tender.customer %}
+                    <a href="{% url 'accept_offer' offer.id %}" class="btn btn-success">Accept Offer</a>
+                {% elif offer.is_accepted %}
+                    <span class="badge badge-success">Accepted</span>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+
+    {% if tender.is_active and request.user != tender.customer %}
+        <a href="{% url 'send_offer' tender.id %}" class="btn btn-primary mt-4">Submit Offer</a>
+    {% endif %}
+</div>
+{% endblock %}
+
+
+{% block scripts %} 
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+{% endblock %}

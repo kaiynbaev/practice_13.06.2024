@@ -1,0 +1,77 @@
+{% extends "tender/index.html" %}
+
+{% block header%}  Главная {% endblock %}
+
+
+{% block style %}
+
+
+
+.outer-container {
+    width: 100%;
+    max-width: 1725px;
+    background-color: #e9ecef;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.welcome-message {
+    background-color: #ffffff;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 20px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+.welcome-message h1 {
+    font-size: 24px;
+    color: #333333;
+    margin-bottom: 20px;
+}
+.welcome-message p {
+    font-size: 18px;
+    color: #555555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+.welcome-message ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+.welcome-message ul li {
+    font-size: 18px;
+    color: #555555;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+.welcome-message strong {
+    color: #000000;
+}
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="outer-container">
+    <div class="welcome-message">
+        <h1>Добро пожаловать на <strong>Zakupkinet</strong> – Ваш надежный партнер в закупках!</h1>
+        <p>Мы предлагаем широкий ассортимент высококачественных товаров по конкурентным ценам. Будь то оборудование для офиса, материалы для производства или бытовые нужды – у нас есть всё, что вам нужно!</p>
+        <p>С нами вы всегда получите:</p>
+        <ul>
+            <li>Выгодные предложения и скидки на популярные товары.</li>
+            <li>Быстрая и надежная доставка по всей стране.</li>
+            <li>Круглосуточная поддержка клиентов для решения любых вопросов.</li>
+        </ul>
+        <p>Начните свои покупки прямо сейчас и ощутите удобство и надежность закупок с <strong>Zakupkinet</strong>.</p>
+        <p><strong>Zakupkinet – делаем закупки проще!</strong></p>
+    </div>
+</div>
+
+{% endblock %}

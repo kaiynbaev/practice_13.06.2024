@@ -1,0 +1,44 @@
+{% extends "tender/index.html" %}
+
+{% block header%}  Главная {% endblock %}
+
+
+{% block style %}
+.profile-card {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.profile-card h3 {
+    margin: 0;
+}
+
+.profile-card p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+{% endblock %}
+
+{% block content %}
+
+{% csrf_token %}
+<div class="profile-card">
+    <img src="{{ user.profile.picture.url }}" alt="Profile Picture">
+    <h3>{{ user.get_full_name }}</h3>
+    <p>{{ user.username }}</p>
+</div>
+
+{% endblock %}
